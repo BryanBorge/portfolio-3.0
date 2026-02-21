@@ -1,6 +1,6 @@
 import { createClient } from "@sanity/client";
 import { createImageUrlBuilder } from "@sanity/image-url";
-import type { About, Hero } from "../types/sanity.types";
+import type { About, Hero, Skills } from "../types/sanity.types";
 
 export const client = createClient({
   projectId: "n7nfte7c",
@@ -17,15 +17,15 @@ export function urlFor(source: any) {
 }
 
 export async function getHeroData(): Promise<Hero> {
-  return client.fetch(`*[_type == "hero"][0]{
-    name,
-    title,
-    heroSubtext,
-    profileImage
-  }`);
+  return client.fetch(`*[_type == "hero"][0]`);
 }
 
 export async function getAboutMeData(): Promise<About>{
   return client.fetch(`*[_type == "about"][0]`);
 }
+
+export async function getSkillsData(): Promise<Skills>{
+  return client.fetch(`*[_type == "skills"][0]`);
+}
+
 

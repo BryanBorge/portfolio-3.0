@@ -1,5 +1,5 @@
-import { Container, Stack, Text, Title, Typography } from "@mantine/core";
-import { Suspense, use, type JSX } from "react";
+import { Container, Stack, Text, Title } from "@mantine/core";
+import { Suspense, use } from "react";
 import { getAboutMeData } from "../../sanity/client";
 import { PortableText } from "@portabletext/react";
 
@@ -18,11 +18,6 @@ export const About = () => {
       ),
       normal: ({ children }: { children?: React.ReactNode }) => (
         <Text size="md">{children}</Text>
-      ),
-      blockquote: ({ children }: { children?: React.ReactNode }) => (
-        <Text fs="italic" c="dimmed">
-          {children}
-        </Text>
       ),
     },
   };

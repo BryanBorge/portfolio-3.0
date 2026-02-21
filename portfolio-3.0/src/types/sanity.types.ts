@@ -1,3 +1,33 @@
+export type Technology = {
+  _type: 'technology'
+  name?: string
+  variant?: 'filled' | 'light'
+}
+
+export type TechnologyCategory = {
+  _type: 'technologyCategory'
+  title?: string
+  technologies?: Array<
+    {
+      _key: string
+    } & Technology
+  >
+}
+
+export type Skills = {
+  _id: string
+  _type: 'skills'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading?: string
+  categories?: Array<
+    {
+      _key: string
+    } & TechnologyCategory
+  >
+}
+
 export type About = {
   _id: string
   _type: 'about'
@@ -169,6 +199,9 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | Technology
+  | TechnologyCategory
+  | Skills
   | About
   | SanityImageAssetReference
   | Hero

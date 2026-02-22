@@ -1,9 +1,11 @@
-import { Anchor, Box, Group, Stack, Text } from "@mantine/core";
+import { Box, Group, Stack, Text } from "@mantine/core";
 import { useFooter } from "./useFooter";
 import { format, parseISO } from "date-fns";
 import { SocialActionIcon } from "./SocialActionIcon";
 import { FooterBreakoutBox } from "./FooterBreakoutBox";
 import { FooterSkeleton } from "./FooterSkeleton";
+import { Location } from "./Location";
+import { Email } from "./Email";
 
 export const Footer = () => {
   const { data, isLoading, isError, error } = useFooter();
@@ -25,17 +27,8 @@ export const Footer = () => {
       <Group justify="space-between">
         <Box>
           <Stack>
-            <Text size="sm" c="dimmed">
-              {data.settings.location}
-            </Text>
-            <Anchor
-              size="sm"
-              c="dimmed"
-              href={`mailto:${data.settings.email}`}
-              underline="always"
-            >
-              {data.settings.email}
-            </Anchor>
+            <Location location={data.settings.location} />
+            <Email email={data.settings.email} />
           </Stack>
         </Box>
         <Box>
@@ -45,15 +38,19 @@ export const Footer = () => {
                 url={data.settings.socialLinks.githubUrl}
                 iconName={data.settings.socialLinks.githubIcon}
               />
-
               <SocialActionIcon
                 url={data.settings.socialLinks.linkedinUrl}
                 iconName={data.settings.socialLinks.linkedinIcon}
               />
             </Group>
-            <Text size="sm" c="dimmed">
-              {`Updated · ${format(parseISO(data.lastUpdated), "MMMM yyyy")}`}
-            </Text>
+            <Box>
+              <Text size="xs" c="dimmed">
+                {`© Bryan Borgesano`}
+              </Text>
+              <Text size="xs" c="dimmed">
+                {`Updated · ${format(parseISO(data.lastUpdated), "MMMM yyyy")}`}
+              </Text>
+            </Box>
           </Stack>
         </Box>
       </Group>

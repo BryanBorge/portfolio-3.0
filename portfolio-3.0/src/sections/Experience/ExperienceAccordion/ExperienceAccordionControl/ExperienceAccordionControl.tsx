@@ -1,5 +1,5 @@
 import { Accordion, Image } from "@mantine/core";
-import type { WorkExperience } from "../../../../types/sanity.types";
+import type { Company, WorkExperience } from "../../../../types/sanity.types";
 import { urlFor } from "../../../../sanity/client";
 import { AccordionControlText } from "./AccordionControlText";
 
@@ -7,8 +7,8 @@ type ExperienceAccordionControlProps = Pick<
   WorkExperience,
   "role" | "startDate" | "endDate" | "isCurrent"
 > & {
-  companyName: WorkExperience["company"]["name"];
-  logo: WorkExperience["company"]["logo"];
+  companyName: Company["name"];
+  logo: Company["logo"];
 };
 
 export const ExperienceAccordionControl = ({

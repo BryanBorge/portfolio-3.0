@@ -5,6 +5,9 @@ import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider, createTheme } from "@mantine/core";
 import type { MantineColorsTuple } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LogRocket from 'logrocket';
+
+LogRocket.init('4blcry/personal-site');
 
 const myColor: MantineColorsTuple = [
   "#e1f8ff",

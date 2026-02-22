@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Group,
   Image,
   Space,
@@ -8,13 +7,19 @@ import {
   Text,
   Paper,
 } from "@mantine/core";
-import { getHeroData, urlFor } from "../../sanity/client";
-import { Suspense, use } from "react";
+import { urlFor } from "../../sanity/client";
+import { useHero } from "./useHero";
 
-const dataPromise = getHeroData();
 
 export const Hero = () => {
-  const data = use(dataPromise);
+  const { data, isLoading, isError, error } = useHero();
+ 
+  if (isLoading) return <Text>Loading hero...</Text>;
+
+  if (isError) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return <Text c="red">Failed to load hero: {message}</Text>;
+  }
 
   return (
     <Group>
@@ -33,15 +38,5 @@ export const Hero = () => {
         <Text size="md">{data.heroSubtext}</Text>
       </Box>
     </Group>
-  );
-};
-
-export const HeroContainer = () => {
-  return (
-    <Container size="md">
-      <Suspense fallback={<Text>Loading HERO...</Text>}>
-        <Hero />
-      </Suspense>
-    </Container>
   );
 };

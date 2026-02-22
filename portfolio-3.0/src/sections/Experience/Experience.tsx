@@ -1,16 +1,20 @@
-import { Accordion, Container, Space, Text, Title } from "@mantine/core";
-import { Suspense, use } from "react";
-import { getExperienceData } from "../../sanity/client";
+import { Accordion, Box, Space, Text, Title } from "@mantine/core";
 import { ExperienceAccordionControl } from "./ExperienceAccordion/ExperienceAccordionControl/ExperienceAccordionControl";
 import { ExperienceAccordionControlPanel } from "./ExperienceAccordion/ExperienceAccordionPanel";
-
-const dataPromise = getExperienceData();
+import { useExperience } from "./useExperience";
 
 export const Experience = () => {
-  const data = use(dataPromise);
+  const { data, isLoading, isError, error } = useExperience();
+
+  if (isLoading) return <Text>Loading experience…</Text>;
+
+  if (isError) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return <Text c="red">Failed to load experience: {message}</Text>;
+  }
 
   return (
-    <Container size="md" w="100%">
+    <Box>
       <Title order={3}>Experience</Title>
       <Space h="md" />
       <Accordion variant="separated" defaultValue="Applied Visions">
@@ -27,16 +31,6 @@ export const Experience = () => {
           </Accordion.Item>
         ))}
       </Accordion>
-    </Container>
-  );
-};
-
-export const ExperienceContainer = () => {
-  return (
-    <Container size="md">
-      <Suspense fallback={<Text>Loading EXPERIENCE...</Text>}>
-        <Experience />
-      </Suspense>
-    </Container>
+    </Box>
   );
 };

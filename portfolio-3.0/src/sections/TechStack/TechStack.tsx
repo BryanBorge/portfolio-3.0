@@ -1,20 +1,23 @@
 import {
   Badge,
   Card,
-  Container,
   Group,
   SimpleGrid,
   Stack,
   Text,
   Title,
 } from "@mantine/core";
-import { Suspense, use } from "react";
-import { getSkillsData } from "../../sanity/client";
-
-const dataPromise = getSkillsData();
+import { useTechStack } from "./useTechStack";
 
 export const TechStack = () => {
-  const data = use(dataPromise);
+  const { data, isLoading, isError, error } = useTechStack();
+
+  if (isLoading) return <Text>Loading tech stack...</Text>;
+
+  if (isError) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return <Text c="red">Failed to load experience: {message}</Text>;
+  }
 
   return (
     <Stack gap="md">
@@ -36,15 +39,5 @@ export const TechStack = () => {
         ))}
       </SimpleGrid>
     </Stack>
-  );
-};
-
-export const TechStackContainer = () => {
-  return (
-    <Container size="md" w="100%">
-      <Suspense fallback={<Text>Loading SKILLS...</Text>}>
-        <TechStack />
-      </Suspense>
-    </Container>
   );
 };

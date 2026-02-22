@@ -1,19 +1,22 @@
-import { Space, Stack } from "@mantine/core";
-import { HeroContainer } from "./sections/Hero/Hero";
-import { AboutContainer } from "./sections/About/About";
+import { Container, Space, Stack } from "@mantine/core";
+import { Hero } from "./sections/Hero/Hero";
+import { About } from "./sections/About/About";
 import { Experience } from "./sections/Experience/Experience";
-import { TechStackContainer } from "./sections/TechStack/TechStack";
+import { TechStack } from "./sections/TechStack/TechStack";
 
 export const ContentLayout = () => {
   return (
-    <Stack gap="xl">
-      <HeroContainer />
-      <AboutContainer />
-      <Space h="md" />
-      <TechStackContainer />
-      <Space h="md" />
-      <Experience />
-      <Space h="lg" />
-    </Stack>
+    <Container size="md">
+      <Stack gap="xl">
+        <Hero />
+        <About />
+        <Space h="md" />
+        <TechStack />
+        <Space h="md" />
+        <Experience />
+        <Space h="lg" />
+      </Stack>
+    </Container>
+
   );
 };

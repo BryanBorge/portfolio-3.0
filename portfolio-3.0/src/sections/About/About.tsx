@@ -1,12 +1,16 @@
-import { Container, Stack, Text, Title } from "@mantine/core";
-import { Suspense, use } from "react";
-import { getAboutMeData } from "../../sanity/client";
+import { Stack, Text, Title } from "@mantine/core";
 import { PortableText } from "@portabletext/react";
-
-const dataPromise = getAboutMeData();
+import { useAbout } from "./useAbout";
 
 export const About = () => {
-  const data = use(dataPromise);
+  const { data, isLoading, isError, error } = useAbout();
+
+  if (isLoading) return <Text>Loading about...</Text>;
+
+  if (isError) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return <Text c="red">Failed to load about: {message}</Text>;
+  }
 
   const components = {
     block: {
@@ -28,19 +32,5 @@ export const About = () => {
         <PortableText value={data.about} components={components} />
       ) : null}
     </Stack>
-  );
-};
-
-export const AboutContainer = () => {
-  return (
-    <Container
-      size="md"
-      w="
-    100%"
-    >
-      <Suspense fallback={<Text>Loading ABOUT...</Text>}>
-        <About />
-      </Suspense>
-    </Container>
   );
 };

@@ -18,7 +18,7 @@ export const TechStack = () => {
 
   return (
     <Stack gap="md">
-      <Title order={3}>Core Stack</Title>
+      <Title order={3}>Tech Stack</Title>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
         {data.categories?.map((category) => (
           <Card withBorder p="lg" radius="md" shadow="sm">

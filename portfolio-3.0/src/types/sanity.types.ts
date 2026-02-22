@@ -1,3 +1,82 @@
+export type CompanyReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'company'
+}
+
+export type WorkExperience = {
+  _id: string
+  _type: 'workExperience'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  role?: string
+  company: Company
+  startDate: string
+  endDate: string
+  isCurrent: boolean
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  order?: number
+}
+
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type Company = {
+  _id: string
+  _type: 'company'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  logo: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  website: string
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
 export type Technology = {
   _type: 'technology'
   name?: string
@@ -54,13 +133,6 @@ export type About = {
   }>
 }
 
-export type SanityImageAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-}
-
 export type Hero = {
   _id: string
   _type: 'hero'
@@ -77,22 +149,6 @@ export type Hero = {
     crop?: SanityImageCrop
     _type: 'image'
   }
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
 }
 
 export type SanityImagePaletteSwatch = {
@@ -199,14 +255,17 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | CompanyReference
+  | WorkExperience
+  | SanityImageAssetReference
+  | Company
+  | SanityImageCrop
+  | SanityImageHotspot
   | Technology
   | TechnologyCategory
   | Skills
   | About
-  | SanityImageAssetReference
   | Hero
-  | SanityImageCrop
-  | SanityImageHotspot
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions

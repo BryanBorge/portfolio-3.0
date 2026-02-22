@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAboutMeData } from "../../sanity/client";
-import type { About } from "../../types/sanity.types";
+import type { AboutQueryResult } from "../../types/sanity.client.types";
 
 export const useAbout = () => {
   const query = useQuery({
@@ -8,9 +8,9 @@ export const useAbout = () => {
     queryFn: getAboutMeData,
     staleTime: Infinity,
   });
-
+  
   return {
-    data: query.data ?? ({} as About),
+    data: query.data ?? ({} as AboutQueryResult),
     isLoading: query.status === "pending",
     isError: query.status === "error",
     error: query.error,

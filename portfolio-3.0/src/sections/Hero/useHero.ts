@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getHeroData } from "../../sanity/client";
-import type { Hero } from "../../types/sanity.types";
+import type { HeroQueryResult } from "../../types/sanity.client.types";
 
 export const useHero = () => {
   const query = useQuery({
@@ -10,7 +10,7 @@ export const useHero = () => {
   });
 
   return {
-    data: query.data ?? ({} as Hero),
+    data: query.data ?? ({} as HeroQueryResult),
     isLoading: query.status === "pending",
     isError: query.status === "error",
     error: query.error,

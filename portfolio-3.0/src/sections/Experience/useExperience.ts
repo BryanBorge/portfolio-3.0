@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getExperienceData } from "../../sanity/client";
-import type { WorkExperience } from "../../types/sanity.types";
+import type { ExperienceQueryResponse } from "../../types/sanity.client.types";
 
 export const useExperience = () => {
   const query = useQuery({
@@ -10,7 +10,7 @@ export const useExperience = () => {
   });
 
   return {
-    data: query.data ?? ([] as WorkExperience[]),
+    data: query.data ?? ({} as ExperienceQueryResponse),
     isLoading: query.status === "pending",
     isError: query.status === "error",
     error: query.error,

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getSkillsData } from "../../sanity/client";
-import type { Skills } from "../../types/sanity.types";
+import type { SkillsQueryResult } from "../../types/sanity.client.types";
 
 export const useTechStack = () => {
   const query = useQuery({
@@ -10,7 +10,7 @@ export const useTechStack = () => {
   });
 
   return {
-    data: query.data ?? ({} as Skills),
+    data: query.data ?? ({} as SkillsQueryResult),
     isLoading: query.status === "pending",
     isError: query.status === "error",
     error: query.error,

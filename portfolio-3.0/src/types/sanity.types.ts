@@ -1,3 +1,24 @@
+export type WorkExperienceReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'workExperience'
+}
+
+export type WorkExperienceSection = {
+  _id: string
+  _type: 'workExperienceSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  heading: string
+  items: Array<
+    {
+      _key: string
+    } & WorkExperienceReference
+  >
+}
+
 export type CompanyReference = {
   _ref: string
   _type: 'reference'
@@ -11,8 +32,8 @@ export type WorkExperience = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  role?: string
-  company: Company
+  role: string
+  company: CompanyReference
   startDate: string
   endDate: string
   isCurrent: boolean
@@ -34,7 +55,7 @@ export type WorkExperience = {
     _type: 'block'
     _key: string
   }>
-  order?: number
+  order: number
 }
 
 export type SanityImageAssetReference = {
@@ -58,35 +79,35 @@ export type Company = {
     crop?: SanityImageCrop
     _type: 'image'
   }
-  website: string
+  website?: string
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type Technology = {
   _type: 'technology'
-  name?: string
-  variant?: 'filled' | 'light'
+  name: string
+  variant: 'filled' | 'light'
 }
 
 export type TechnologyCategory = {
   _type: 'technologyCategory'
-  title?: string
-  technologies?: Array<
+  title: string
+  technologies: Array<
     {
       _key: string
     } & Technology
@@ -99,8 +120,8 @@ export type Skills = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  heading?: string
-  categories?: Array<
+  heading: string
+  categories: Array<
     {
       _key: string
     } & TechnologyCategory
@@ -113,7 +134,7 @@ export type About = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  about?: Array<{
+  about: Array<{
     children?: Array<{
       marks?: Array<string>
       text?: string
@@ -139,10 +160,10 @@ export type Hero = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name?: string
-  title?: string
-  heroSubtext?: string
-  profileImage?: {
+  name: string
+  title: string
+  heroSubtext: string
+  profileImage: {
     asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
@@ -172,9 +193,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageMetadata = {
@@ -250,11 +271,13 @@ export type Geopoint = {
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 
 export type AllSanitySchemaTypes =
+  | WorkExperienceReference
+  | WorkExperienceSection
   | CompanyReference
   | WorkExperience
   | SanityImageAssetReference

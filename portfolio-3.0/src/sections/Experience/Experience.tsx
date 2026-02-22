@@ -16,18 +16,18 @@ export const Experience = () => {
 
   return (
     <Box>
-      <Title order={3}>Experience</Title>
+      <Title order={3}>{data.heading}</Title>
       <Space h="md" />
       <Accordion variant="separated" defaultValue="Applied Visions">
-        {data.map((experience) => (
-          <Accordion.Item key={experience._id} value={experience.company.name}>
+        {data.items.map((item) => (
+          <Accordion.Item key={item._id} value={item.company.name}>
             <ExperienceAccordionControl
-              {...experience}
-              logo={experience.company.logo}
-              companyName={experience.company.name}
+              {...item}
+              logo={item.company.logo}
+              companyName={item.company.name}
             />
             <ExperienceAccordionControlPanel
-              description={experience.description}
+              description={item.description}
             />
           </Accordion.Item>
         ))}

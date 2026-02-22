@@ -1,11 +1,12 @@
 import { Stack, Text, Title } from "@mantine/core";
 import { PortableText } from "@portabletext/react";
 import { useAbout } from "./useAbout";
+import { AboutSkeleton } from "./AboutSkeleton";
 
 export const About = () => {
   const { data, isLoading, isError, error } = useAbout();
 
-  if (isLoading) return <Text>Loading about...</Text>;
+  if (isLoading) return <AboutSkeleton />;
 
   if (isError) {
     const message = error instanceof Error ? error.message : "Unknown error";

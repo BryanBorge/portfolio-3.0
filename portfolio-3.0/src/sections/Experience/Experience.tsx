@@ -2,11 +2,12 @@ import { Accordion, Box, Space, Text, Title } from "@mantine/core";
 import { ExperienceAccordionControl } from "./ExperienceAccordion/ExperienceAccordionControl/ExperienceAccordionControl";
 import { ExperienceAccordionControlPanel } from "./ExperienceAccordion/ExperienceAccordionPanel";
 import { useExperience } from "./useExperience";
+import { ExperienceSkeleton } from "./ExperienceSkeleton";
 
 export const Experience = () => {
   const { data, isLoading, isError, error } = useExperience();
 
-  if (isLoading) return <Text>Loading experience…</Text>;
+  if (isLoading) return <ExperienceSkeleton />;
 
   if (isError) {
     const message = error instanceof Error ? error.message : "Unknown error";

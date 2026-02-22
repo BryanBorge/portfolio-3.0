@@ -9,10 +9,11 @@ export const ContentLayout = () => {
     <Container size="md">
       <Stack gap="xl">
         <Hero />
+        <Space h="xl" />
         <About />
-        <Space h="md" />
+        <Space h="lg" />
         <TechStack />
-        <Space h="md" />
+        <Space h="lg" />
         <Experience />
         <Space h="lg" />
       </Stack>

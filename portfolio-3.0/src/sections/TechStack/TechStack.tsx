@@ -8,11 +8,12 @@ import {
   Title,
 } from "@mantine/core";
 import { useTechStack } from "./useTechStack";
+import { TechStackSkeleton } from "./TechStackSkeleton";
 
 export const TechStack = () => {
   const { data, isLoading, isError, error } = useTechStack();
 
-  if (isLoading) return <Text>Loading tech stack...</Text>;
+  if (isLoading) return <TechStackSkeleton />;
 
   if (isError) {
     const message = error instanceof Error ? error.message : "Unknown error";

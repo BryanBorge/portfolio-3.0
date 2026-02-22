@@ -5,10 +5,10 @@ import { Header } from "./components/Header/Header";
 
 function App() {
   return (
-    <AppShell padding="xl" py="xl">
+    <AppShell header={{height: 60}}>
       <Header />
       <AppShell.Main>
-        <Box style={{ flex: 1 }}>
+        <Box>
           <ContentLayout />
         </Box>
       </AppShell.Main>

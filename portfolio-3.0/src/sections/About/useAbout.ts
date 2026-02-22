@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAboutMeData } from "../../sanity/client";
+import { getAboutMe } from "../../sanity/client";
 import type { AboutQueryResult } from "../../types/sanity.client.types";
 
 export const useAbout = () => {
   const query = useQuery({
     queryKey: ["about"],
-    queryFn: getAboutMeData,
+    queryFn: getAboutMe,
     staleTime: Infinity,
   });
   

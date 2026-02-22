@@ -15,9 +15,10 @@ export const DarkModeButton = () => {
     <ActionIcon
       variant="subtle"
       size="lg"
+      color={isDark ? "white" : "grey"}
       onClick={() => setColorScheme(isDark ? "light" : "dark")}
     >
-      {isDark ? <IconSun size={18} /> : <IconMoon size={18} />}
+      {isDark ? <IconSun size={24} /> : <IconMoon size={24} />}
     </ActionIcon>
   );
 };

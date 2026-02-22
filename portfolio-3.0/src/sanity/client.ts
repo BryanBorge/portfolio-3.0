@@ -1,10 +1,14 @@
 import { createClient } from "@sanity/client";
-import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
+import {
+  createImageUrlBuilder,
+  type SanityImageSource,
+} from "@sanity/image-url";
 import type {
   AboutQueryResult,
   ExperienceQueryResponse,
+  FooterQueryResponse,
   HeroQueryResult,
-  SkillsQueryResult,
+  TechStackQueryResult,
 } from "../types/sanity.client.types";
 
 export const client = createClient({
@@ -16,27 +20,27 @@ export const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
-export function urlFor(source: SanityImageSource) {
+export const urlFor = (source: SanityImageSource) => {
   return builder.image(source);
-}
+};
 
-export async function getHeroData(): Promise<HeroQueryResult> {
+export const getHero = async (): Promise<HeroQueryResult> => {
   return client.fetch(`*[_type == "hero"][0]{
     name, 
     title, 
     heroSubtext,
     profileImage
   }`);
-}
+};
 
-export async function getAboutMeData(): Promise<AboutQueryResult> {
+export const getAboutMe = async (): Promise<AboutQueryResult> => {
   return client.fetch(`*[_type == "about"][0]{
     about
   }`);
-}
+};
 
-export async function getSkillsData(): Promise<SkillsQueryResult> {
-  return client.fetch(`*[_type == "skills"][0]{
+export const getTechStack = async (): Promise<TechStackQueryResult> => {
+  return client.fetch(`*[_type == "techStack"][0]{
     heading,
     categories[]{
       _key,
@@ -48,9 +52,9 @@ export async function getSkillsData(): Promise<SkillsQueryResult> {
       }
     }
   }`);
-}
+};
 
-export async function getExperienceData(): Promise<ExperienceQueryResponse> {
+export const getExperience = async (): Promise<ExperienceQueryResponse> => {
   return client.fetch(`*[_type == "workExperienceSection"][0]{
   _id,
   heading,
@@ -70,4 +74,25 @@ export async function getExperienceData(): Promise<ExperienceQueryResponse> {
     }
   }
 }`);
-}
+};
+
+export const getFooterSettings = async () => {
+  return client.fetch<FooterQueryResponse>(`
+    {
+      "settings": *[_type == "footerSettings"][0]{
+        location,
+        email,
+        socialLinks {
+          githubUrl,
+          githubIcon,
+          linkedinUrl,
+          linkedinIcon
+        }
+      },
+      "lastUpdated": *[
+        _type in ["hero", "about", "workExperienceSection", "techStack", "footerSettings"]
+      ]
+      | order(_updatedAt desc)[0]._updatedAt
+    }
+  `);
+};

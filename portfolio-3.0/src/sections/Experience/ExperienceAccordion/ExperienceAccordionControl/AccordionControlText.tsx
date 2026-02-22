@@ -1,12 +1,12 @@
 import { Box, Text, Title, useMatches } from "@mantine/core";
 import { format, parseISO } from "date-fns";
-import type { WorkExperience } from "../../../../types/sanity.types";
+import type { Company, WorkExperience } from "../../../../types/sanity.types";
 
 type AccordionControlTextProps = Pick<
   WorkExperience,
   "role" | "startDate" | "endDate" | "isCurrent"
 > & {
-  companyName: WorkExperience["company"]["name"];
+  companyName: Company["name"];
 };
 
 const formatMonthYear = (date: string, dateFormat: string) => {

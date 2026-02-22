@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getExperienceData } from "../../sanity/client";
+import { getExperience } from "../../sanity/client";
 import type { ExperienceQueryResponse } from "../../types/sanity.client.types";
 
 export const useExperience = () => {
   const query = useQuery({
     queryKey: ["experience"],
-    queryFn: getExperienceData,
+    queryFn: getExperience,
     staleTime: Infinity,
   });
 

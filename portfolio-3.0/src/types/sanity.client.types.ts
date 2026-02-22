@@ -1,8 +1,9 @@
 import type {
   About,
   Company,
+  FooterSettings,
   Hero,
-  Skills,
+  TechStack,
   WorkExperience,
   WorkExperienceSection,
 } from "./sanity.types";
@@ -24,4 +25,13 @@ export type HeroQueryResult = Pick<
 
 export type AboutQueryResult = Pick<About, "about">;
 
-export type SkillsQueryResult = Pick<Skills, "heading" | "categories">;
+export type TechStackQueryResult = Pick<TechStack, "heading" | "categories">;
+
+
+export type FooterQueryResponse = {
+  settings: Pick<
+  FooterSettings,
+  "email" | "location" | "socialLinks"
+>  ;
+  lastUpdated: string;
+};

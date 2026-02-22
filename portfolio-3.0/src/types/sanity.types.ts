@@ -1,3 +1,19 @@
+export type FooterSettings = {
+  _id: string
+  _type: 'footerSettings'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  location: string
+  email: string
+  socialLinks: {
+    githubUrl: string
+    githubIcon: string
+    linkedinUrl: string
+    linkedinIcon: string
+  }
+}
+
 export type WorkExperienceReference = {
   _ref: string
   _type: 'reference'
@@ -114,9 +130,9 @@ export type TechnologyCategory = {
   >
 }
 
-export type Skills = {
+export type TechStack = {
   _id: string
-  _type: 'skills'
+  _type: 'techStack'
   _createdAt: string
   _updatedAt: string
   _rev: string
@@ -276,6 +292,7 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | FooterSettings
   | WorkExperienceReference
   | WorkExperienceSection
   | CompanyReference
@@ -286,7 +303,7 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Technology
   | TechnologyCategory
-  | Skills
+  | TechStack
   | About
   | Hero
   | SanityImagePaletteSwatch

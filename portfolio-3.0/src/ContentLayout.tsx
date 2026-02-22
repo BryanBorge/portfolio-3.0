@@ -6,7 +6,7 @@ import { TechStack } from "./sections/TechStack/TechStack";
 
 export const ContentLayout = () => {
   return (
-    <Container size="md">
+    <Container size="md" pt="xl">
       <Stack gap="xl">
         <Hero />
         <Space h="xl" />

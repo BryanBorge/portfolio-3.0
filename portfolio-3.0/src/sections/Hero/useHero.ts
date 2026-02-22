@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getHeroData } from "../../sanity/client";
+import { getHero } from "../../sanity/client";
 import type { HeroQueryResult } from "../../types/sanity.client.types";
 
 export const useHero = () => {
   const query = useQuery({
     queryKey: ["hero"],
-    queryFn: getHeroData,
+    queryFn: getHero,
     staleTime: Infinity,
   });
 

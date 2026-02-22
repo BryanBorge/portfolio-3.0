@@ -11,8 +11,8 @@ export const ThemeIconGroup = ({
   icon: Icon,
 }: ThemeIconGroupProps) => {
   return (
-    <Group gap={2}>
-      <ThemeIcon variant="white" color="grey" size="sm">
+    <Group gap="xs">
+      <ThemeIcon variant="subtle" c="dimmed" size="sm">
         <Icon />
       </ThemeIcon>
       {children}
